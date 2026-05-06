@@ -1,0 +1,57 @@
+seed: 42
+
+audio:
+  sample_rate: 22050
+  n_fft: 1024
+  hop_length: 256
+  win_length: 1024
+  n_mels: 80
+  f_min: 0.0
+  f_max: 8000.0
+
+text:
+  language: "de"             # de | en
+  use_phonemes: true
+  cleaners: ["german_cleaners"]   # see conformer_tts/text/cleaners.py
+
+model:
+  hidden_dim: 256
+  n_heads: 4
+  encoder:
+    n_layers: 4
+    conv_kernel: 31
+    ff_expansion: 4
+    dropout: 0.1
+  decoder:
+    n_layers: 4
+    conv_kernel: 31
+    ff_expansion: 4
+    dropout: 0.1
+  variance:
+    duration_kernel: 3
+    pitch_kernel: 3
+    energy_kernel: 3
+    dropout: 0.5
+
+data:
+  dataset: "thorsten"        # thorsten | ljspeech
+  root: "data/thorsten"
+  train_meta: "metadata_train.csv"
+  val_meta: "metadata_val.csv"
+  num_workers: 4
+
+training:
+  batch_size: 16
+  max_steps: 200000
+  precision: "16-mixed"
+  lr: 1.0e-4
+  warmup_steps: 4000
+  grad_clip: 1.0
+  log_every_n_steps: 50
+  val_check_interval: 2000
+  save_every_n_steps: 5000
+  output_dir: "runs/default"
+
+vocoder:
+  type: "hifigan"
+  checkpoint: null            # path to HiFi-GAN .pt; if null, Griffin-Lim fallback
