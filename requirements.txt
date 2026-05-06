@@ -1,0 +1,36 @@
+# Core deep learning
+torch>=2.1
+torchaudio>=2.1
+pytorch-lightning>=2.2
+
+# Audio / numerics
+numpy>=1.24
+scipy>=1.11
+librosa>=0.10
+soundfile>=0.12
+
+# Text / phonemes (system: install eSpeak NG separately)
+phonemizer>=3.2
+unidecode>=1.3
+
+# Config & logging
+pyyaml>=6.0
+tqdm>=4.66
+tensorboard>=2.15
+
+# Inference server
+fastapi>=0.110
+uvicorn[standard]>=0.27
+pydantic>=2.5
+
+# Hub integration (optional for push_to_hub / pull_from_hub)
+huggingface_hub>=0.23
+
+# Export (optional)
+onnx>=1.16
+onnxruntime>=1.17
+
+# Dev
+pytest>=7.4
+ruff>=0.3
+black>=24.0
